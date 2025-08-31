@@ -6,6 +6,9 @@ use App\Models\User;
 use BackedEnum;
 use Filament\Support\Icons\Heroicon;
 use Miguilim\FilamentAutoPanel\AutoResource;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Forms\Components\TextInput;
+use Illuminate\Support\Facades\Hash;
 
 class UserResource extends AutoResource
 {
@@ -81,9 +84,20 @@ class UserResource extends AutoResource
             ],
             'form' => [
                 //
+                TextInput::make('password')
+                ->password()
+                    ->afterStateHydrated(function (TextInput $component, $state) {
+                        $component->state('');
+                    })
+                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->required(fn (string $context): bool => $context === 'create')
             ],
             'infolist' => [
                 //
+                TextEntry::make('password')
+                    ->label('Password')
+                    ->formatStateUsing(fn () => '******'),
             ],
         ];
     }
