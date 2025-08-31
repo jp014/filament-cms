@@ -4,3 +4,4 @@
 @source '../../../../resources/views/filament/**/*';
 @source "../../../../vendor/relaticle/flowforge/resources/views/**/*.blade.php";
 @source '../../../../vendor/guava/calendar/resources/**/*';
+@source '../../../../vendor/guava/filament-modal-relation-managers/resources/**/*';

@@ -8,6 +8,13 @@ use Filament\Support\Icons\Heroicon;
 use Miguilim\FilamentAutoPanel\AutoResource;
 use Miguilim\FilamentAutoPanel\Mounters\RelationManagerMounter;
 use App\Filament\RelationManagers\ProjectTasksRelationManager;
+use Guava\FilamentModalRelationManagers\Actions\RelationManagerAction;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\ViewAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
 
 class ProjectResource extends AutoResource
 {
@@ -100,4 +107,27 @@ class ProjectResource extends AutoResource
             //
         ];
     }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('start_date'),
+                Tables\Columns\TextColumn::make('end_date'),
+            ])  
+            ->recordActions([
+                RelationManagerAction::make('tasks-relation-manager')
+                    ->label('Tasks')
+                    ->relationManager(\App\Filament\RelationManagers\ProjectTasksRelationManager::make()),
+                ActionGroup::make([
+                    ViewAction::make(),
+                    EditAction::make(),
+                    DeleteAction::make()
+                ])
+            ])
+        ;
+    }
+    
 }

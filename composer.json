@@ -10,6 +10,7 @@
         "coolsam/flatpickr": "^5.0",
         "filament/filament": "^4.0",
         "guava/calendar": "^2.0",
+        "guava/filament-modal-relation-managers": "^2.0",
         "icetalker/filament-table-repeater": "^2.0",
         "laravel-lang/lang": "^15.23",
         "laravel/framework": "^12.0",
