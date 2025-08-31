@@ -7,6 +7,7 @@ use BackedEnum;
 use Filament\Support\Icons\Heroicon;
 use Miguilim\FilamentAutoPanel\AutoResource;
 use Miguilim\FilamentAutoPanel\Mounters\RelationManagerMounter;
+use App\Filament\RelationManagers\ProjectTasksRelationManager;
 
 class ProjectResource extends AutoResource
 {
@@ -46,10 +47,11 @@ class ProjectResource extends AutoResource
     public static function getRelations(): array
     {
         return [
-            RelationManagerMounter::makeFromResource(
-                resource: TaskResource::class, // Auto Resource
-                relation: 'tasks',
-            ),
+            // RelationManagerMounter::makeFromResource(
+            //     resource: TaskResource::class, // Auto Resource
+            //     relation: 'tasks',
+            // ),
+            ProjectTasksRelationManager::class,
         ];
     }
 
