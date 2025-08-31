@@ -16,7 +16,14 @@ class ProjectResource extends AutoResource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static array $enumDictionary = [];
+    protected static array $enumDictionary = [
+        'status' => [
+            'planned' => '予定',
+            'in_progress' => '着手中',
+            'completed' => '完了',
+            'on_hold' => '保留',
+        ]
+    ];
 
     protected static array $visibleColumns = [];
 
